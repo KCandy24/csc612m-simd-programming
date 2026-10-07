@@ -59,8 +59,8 @@ xm_tail_loop:
     jmp     xm_tail_next
 
 xm_take_b:
-    mov     dword [r10+r11], 1          ; idx[i] = 1
-    movss   dword [r9+r11], xmm1        ; C[i] = B[i]
+    mov     dword [r10+r11], 1       
+    movss   dword [r9+r11], xmm1     
 
 xm_tail_next:
     add     r11, 4
