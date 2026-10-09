@@ -21,8 +21,8 @@ avxFuncMaxSPArray:
     test    ecx, ecx                    ; n <= 0 ?
     jle     xm_done
 
-    mov     r10, qword [rsp+0x28]       ; r10 = idx
-    xor     r11d, r11d                  ; r11 = byte offset
+    lea     r10, qword [rsp+40]         ; idx
+    xor     r11, r11                    ; r11 = byte offset 
     mov     eax, ecx                    ; eax = n
     shr     ecx, 2                      ; ecx = n / 4 
     test    ecx, ecx

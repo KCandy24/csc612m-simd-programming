@@ -15,8 +15,8 @@ asmFuncMaxSPArray:
     test    ecx, ecx                    ; n <= 0 ?
     jle     sc_done
 
-    mov     r10, qword [rsp+0x28]       ; idx
-    xor     r11d, r11d                  ; r11 = byte offset 
+    lea     r10, qword [rsp+40]       ; idx
+    xor     r11, r11                    ; r11 = byte offset 
 
 sc_loop:
     movss   xmm0, dword [rdx+r11]       ; xmm0 = spArray0[i]
