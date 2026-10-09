@@ -1,15 +1,29 @@
+
+
+/**************************************************************************************************
+Compile commands also see batch file
+    nasm -f win64 asmFuncMaxSPArray.asm -o asmFuncMaxSPArray.obj
+    nasm -f win64 avxFuncMaxSPArray.asm -o avxFuncMaxSPArray.obj
+    nasm -f win64 avx2FuncMaxSPArray.asm -o avx2FuncMaxSPArray.obj
+    gcc main.c asmFuncMaxSPArray.obj avxFuncMaxSPArray.obj avx2FuncMaxSPArray.obj -o main.exe
+    .\main.exe
+
+    gcc main.c -o main.exe
+    ./main.exe
+
+**************************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <time.h>
-#include <stdbool.h>
 
-// extern void asmFuncMaxSPArray (int n, float* spArray0, float* spArray1, float* maxSPArray, bool* idxArray)
-// extern void avxFuncMaxSPArray (int n, float* spArray0, float* spArray1, float* maxSPArray, bool* idxArray)
-// extern void avx2FuncMaxSPArray(int n, float* spArray0, float* spArray1, float* maxSPArray, bool* idxArray)
+extern void asmFuncMaxSPArray (int n, float* spArray0, float* spArray1, float* maxSPArray, int* idxArray);
+extern void avxFuncMaxSPArray (int n, float* spArray0, float* spArray1, float* maxSPArray, int* idxArray);
+extern void avx2FuncMaxSPArray(int n, float* spArray0, float* spArray1, float* maxSPArray, int* idxArray);
 
-void funcMaxSPArray(int n, float* spArray0, float* spArray1, float* maxSPArray, bool* idxArray){
-    bool index;
+void funcMaxSPArray(int n, float* spArray0, float* spArray1, float* maxSPArray, int* idxArray){
+    int index;
     for (int i = 0; i < n; i++){
         idxArray[i] = (spArray0[i] >= spArray1[i] ? 0 : 1);
         maxSPArray[i] = (!idxArray[i] ? spArray0[i] : spArray1[i]);
@@ -35,7 +49,7 @@ int main(void){
     float *spArray1     = malloc(n * sizeof spArray1);
     
     float *maxSPArray   = malloc(n * sizeof maxSPArray);
-    bool  *idxArray     = malloc(n * sizeof idxArray);
+    int  *idxArray     = malloc(n * sizeof idxArray);
     
     if (spArray0 == NULL || spArray1 == NULL){
         free(spArray0);
@@ -52,9 +66,14 @@ int main(void){
     
     funcMaxSPArray(n, spArray0, spArray1, maxSPArray, idxArray);
     
-    printSPArray(limit, spArray0, "Array 0");
-    printSPArray(limit, spArray1, "Array 1");
-    printSPArray(limit, maxSPArray, "Max Array");
+    // printSPArray(n, spArray0, "Array 0");
+    // printSPArray(n, spArray1, "Array 1");
+    // printSPArray(n, maxSPArray, "Max Array");
+
+    asmFuncMaxSPArray(n, spArray0, spArray1, maxSPArray, idxArray);
+    avxFuncMaxSPArray(n, spArray0, spArray1, maxSPArray, idxArray);
+    avx2FuncMaxSPArray(n, spArray0, spArray1, maxSPArray, idxArray);
+
 
     free(spArray0);
     free(spArray1);
