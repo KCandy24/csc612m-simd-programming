@@ -7,10 +7,11 @@
 ;   r8  = spArray1
 ;   r9  = maxSPArray
 ;   [rsp+40] = idx   (32-byte shadow space + 8-byte return addr)
+default rel
 
 section .data
-zero_dd: times 8 dd 0                   
-one_dd:  times 8 dd 1                
+zero_dd: times 8 dd 0.0                   
+one_dd:  times 8 dd 1.0              
 
 section .text
 align 16
@@ -20,21 +21,21 @@ avx2FuncMaxSPArray:
     test    ecx, ecx                    ; n <= 0 ?
     jle     ym_done
 
-    lea     r10, qword [rsp+40]         ; idx
+    mov     r10, [rsp+40]               ; idx
     xor     r11, r11                    ; r11 = byte offset 
     mov     eax, ecx                    ; eax = n
     shr     ecx, 3                      ; ecx = n / 8 
     test    ecx, ecx
     jz      ym_tail                     ; n < 8 -> scalar tail only
 
-    vmovups ymm5, [zero_dd]             
+    vmovups ymm5, [rel zero_dd]             
 
 ym_loop:
     vmovups ymm0, [rdx+r11]             
     vmovups ymm1, [r8+r11]              
     vcmpps  ymm2, ymm0, ymm1, 1         ; mask = (A < B)
     vblendvps ymm3, ymm0, ymm1, ymm2    
-    vblendvps ymm4, ymm5, [one_dd], ymm2 
+    vblendvps ymm4, ymm5, [rel one_dd], ymm2 
     vmovups [r9+r11], ymm3             
     vmovdqu [r10+r11], ymm4            
 
