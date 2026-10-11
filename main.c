@@ -38,9 +38,10 @@ int main()
     unsigned int seed = 20;
     srand(seed);
 
-    int powers[] = {20, 26, 28}; // 2^20, 2^26, 2^28
+    int powers[] = {20, 20, 26, 28};
+    int offsets[] = {0, 3, 0, 0};
     int limit = 5;
-    int n = (1 << powers[2]);
+    int n;
 
     int twoTo28 = (1 << 28);
 
@@ -67,6 +68,7 @@ int main()
     }
 
     srand(seed);
+    n = twoTo28;
     for (int i = 0; i < n; i++)
     {
         spArray0[i] = (float)rand() / (float)(RAND_MAX) * 10;
@@ -74,10 +76,11 @@ int main()
     }
     
 
-    for (int p = 0; p < 3; p++)
+    for (int p = 0; p < 4; p++)
     {
-        n = (1 << powers[p]);
-        printf("\n=== n = 2^%d = %d ===\n", powers[p], n);
+        n = (1 << powers[p]) + offsets[p];
+        printf("\n=== n = 2^%d + %d = %d ===\n",
+               powers[p], offsets[p], n);
 
         double start, total;
 
