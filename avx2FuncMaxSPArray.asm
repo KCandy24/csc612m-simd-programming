@@ -10,8 +10,8 @@
 default rel
 
 section .data
-zero_dd: times 8 dd 0.0                   
-one_dd:  times 8 dd 1.0              
+zero_dd: times 8 dd 0                   
+one_dd:  times 8 dd 1              
 
 section .text
 align 16

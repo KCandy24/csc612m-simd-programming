@@ -92,6 +92,7 @@ int main()
             funcMaxSPArray(n, spArray0, spArray1, maxSPArrayC, idxArrayC);
             total += getTimeMs() - start;
         }
+        printf("Total Execution Time: %.4f ms\n", total);
         printResults(n, limit, total, maxSPArrayC, idxArrayC, "C");
 
 
@@ -104,6 +105,7 @@ int main()
             asmFuncMaxSPArray(n, spArray0, spArray1, maxSPArray, idxArray);
             total += getTimeMs() - start;
         }
+        printf("Total Execution Time: %.4f ms\n", total);
         checkOutput(n, maxSPArrayC, idxArrayC, maxSPArray, idxArray, "x86-64");
         printResults(n, limit, total, maxSPArray, idxArray, "x86-64");
 
@@ -117,6 +119,7 @@ int main()
             avxFuncMaxSPArray(n, spArray0, spArray1, maxSPArray, idxArray);
             total += getTimeMs() - start;
         }
+        printf("Total Execution Time: %.4f ms\n", total);
         checkOutput(n, maxSPArrayC, idxArrayC, maxSPArray, idxArray, "SIMD XMM");
         printResults(n, limit, total, maxSPArray, idxArray, "SIMD XMM");
 
@@ -130,6 +133,7 @@ int main()
             avx2FuncMaxSPArray(n, spArray0, spArray1, maxSPArray, idxArray);
             total += getTimeMs() - start;
         }
+        printf("Total Execution Time: %.4f ms\n", total);
         checkOutput(n, maxSPArrayC, idxArrayC, maxSPArray, idxArray, "SIMD YMM");
         printResults(n, limit, total, maxSPArray, idxArray, "SIMD YMM");
 
