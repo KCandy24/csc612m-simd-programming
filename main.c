@@ -22,24 +22,25 @@ Compile commands also see batch file
 #define RUNS 30
 
 // All kernel functions
-extern void funcMaxSPArray      (int n, float* spArray0, float* spArray1, float* maxSPArray, int* idxArray)
+extern void funcMaxSPArray      (int n, float* spArray0, float* spArray1, float* maxSPArray, int* idxArray);
 extern void asmFuncMaxSPArray   (int n, float* spArray0, float* spArray1, float* maxSPArray, int* idxArray);
 extern void avxFuncMaxSPArray   (int n, float* spArray0, float* spArray1, float* maxSPArray, int* idxArray);
 extern void avx2FuncMaxSPArray  (int n, float* spArray0, float* spArray1, float* maxSPArray, int* idxArray);
 
 // Function Declarations
-void printResults (int n, int limit, float total, float* spArray, int* idxArray, char* version);
+void printResults (int n, int limit, double total, float* spArray, int* idxArray, char* version);
 double getTimeMs();
 int checkOutput(int n, float* maxSPArrayC, int* idxArrayC, float* maxSPArray, int* idxArray, char* kernelName);
-void resetValues(int n, float* maxSPArray, int* idxArray);
+void resetValues(int n, float* maxSPArray, int* idxArray, double* total);
 
 int main()
 {
     unsigned int seed = 20;
     srand(seed);
 
-    int powers[] = {20, 26, 28}; // 2^20, 2^26, 2^30
+    int powers[] = {20, 26, 28}; // 2^20, 2^26, 2^28
     int limit = 5;
+    int n = (1 << powers[2]);
 
     int twoTo28 = (1 << 28);
 
@@ -55,7 +56,7 @@ int main()
 
     if (spArray0 == NULL || spArray1 == NULL || maxSPArrayC == NULL || idxArrayC == NULL || maxSPArray == NULL || idxArray == NULL)
     {
-        printf("  allocation failed, skipping this size\n");
+        printf("Allocation failed, skipping this size\n");
         free(spArray0);
         free(spArray1);
         free(maxSPArrayC);
@@ -71,11 +72,11 @@ int main()
         spArray0[i] = (float)rand() / (float)(RAND_MAX) * 10;
         spArray1[i] = (float)rand() / (float)(RAND_MAX) * 10;
     }
-    //
+    
 
     for (int p = 0; p < 3; p++)
     {
-        int n = (1 << powers[p]);
+        n = (1 << powers[p]);
         printf("\n=== n = 2^%d = %d ===\n", powers[p], n);
 
         double start, total;
@@ -101,7 +102,7 @@ int main()
             total += getTimeMs() - start;
         }
         checkOutput(n, maxSPArrayC, idxArrayC, maxSPArray, idxArray, "x86-64");
-        printResults(n, limit, total, maxSPArray, idxArray, "x86-64")
+        printResults(n, limit, total, maxSPArray, idxArray, "x86-64");
 
         
         //SIMD XMM 
@@ -114,7 +115,7 @@ int main()
             total += getTimeMs() - start;
         }
         checkOutput(n, maxSPArrayC, idxArrayC, maxSPArray, idxArray, "SIMD XMM");
-        printResults(n, limit, total, maxSPArray, idxArray, "SIMD XMM")
+        printResults(n, limit, total, maxSPArray, idxArray, "SIMD XMM");
 
 
         //SIMD YMM
@@ -127,7 +128,7 @@ int main()
             total += getTimeMs() - start;
         }
         checkOutput(n, maxSPArrayC, idxArrayC, maxSPArray, idxArray, "SIMD YMM");
-        printResults(n, limit, total, maxSPArray, idxArray, "SIMD YMM")
+        printResults(n, limit, total, maxSPArray, idxArray, "SIMD YMM");
 
     }
     free(spArray0);
@@ -141,28 +142,27 @@ int main()
 // Function Implementations **************************************************
 
 //Prints average time and first, last 5 elems of max and idx arrays
-void printResults (int n, int limit, float total, float* spArray, int* idxArray, char* version)
+void printResults(int n, int limit, double total, float* spArray, int* idxArray, char* version)
 {
-    printf("%s version average time: %.4f ms\n", total / RUNS);
+    printf("%s version average time: %.4f ms\n", version, total / RUNS);
 
-    printf("%s max array first %d Elements: ", version, n);
+    printf("%s max array first %d elements: ", version, limit);
     for (int i = 0; i < limit; i++)
         printf("%.2f ", spArray[i]);
-    printf("\n%s idx array first %d Elements: ", version, n);
+    printf("\n%s idx array first %d elements: ", version, limit);
     for (int i = 0; i < limit; i++)
-        printf("%4f ", idxArray[i]);
-
+        printf("%d ", idxArray[i]);
     printf("\n");
 
-    printf("\n%s max array last %d Elements: ", version, n);
-    for (int i = 0; i < limit ; i++)
-        printf("%.2f ", spArray[n + i - 1 - limit]);
-    printf("\n%s idx array first %d Elements: ", version, n);
+    printf("%s max array last %d elements: ", version, limit);
     for (int i = 0; i < limit; i++)
-        printf("%4f ", idxArray[n + i - 1 - limit]);
+        printf("%.2f ", spArray[n - limit + i]);
+    printf("\n%s idx array last %d elements: ", version, limit);
+    for (int i = 0; i < limit; i++)
+        printf("%d ", idxArray[n - limit + i]);
+    printf("\n");
 
-    printf("\nDone %s Version.\n");
-
+    printf("Done %s version.\n", version);
 }
 
 //we use QueryPerformanceCounter para di na the clock()
