@@ -96,18 +96,28 @@ However, the actual speedup still depends on factors such as memory bandwidth, C
 
 ### 4.1 Which Implementation Is the Fastest?
 
-[answer here]
+The fastest implementation is with the AVX2 setup, as it was 17.09x, 9.74x, and 17.18x faster than the standard C (scalar) baseline in $2^{20}$, $2^{26}$, and $2^{28}$.
 
-### 4.2 Why Is It Faster?
+The possible reasons why it is the fastest among the kernels is because of its capability of holding and manipulating larger amounts of data two times better than XMM due to its capacity of 256 bits. It also leverages on the SIMD architecture to perform the operation in a quicker pace than C which performs the calculations “one by one” in a sequential phase, and not parallel.
 
-[answer here]
+### 4.2 Why Is the Speedup Different from Theoretical Expectations?
 
-### 4.3 Why Is the Speedup Different from Theoretical Expectations?
+Based on the results of the runs we have, the results did not show the theoretical effect that YMM should be twice as faster to XMM given that YMM was only ~1.42 times faster than XMM for $2^{20}$ and $2^{28}$, but was almost the same time for the $2^{26}$ one at nine times faster. We also tried doing multiple runs to check this effect and it held true for most of the runs. 
 
-[answer here]
-// add here multiple runs where xmm is faster
+One of the possible reasons is memory bandwidth limitations. In cases such as $2^{26}$ and $2^{28}$, vector sizes are too large that the system could not supply data fast enough to keep the 256-bit vector execution going. With this, performance becomes memory-bound than compute-bound.
 
-### 4.4 Problems Encountered and Solutions
+^^ SAPAT NA BA TOH IMMA CRY IF HINDI
+
+Moreover, we also noticed that during the multiple runs, there were instances that XMM was a little faster than YMM from merely milliseconds to a few seconds apart (see figures below). This “discrepancy?” can be due to runtime environmental factors such as OS context switching, thread preemption, or differing hardware specifications. (Would cache be issue here too?)
+
+
+#### $2^{20}+3$ instance where XMM is faster 
+![XMM_Faster_2^20+3](screenshots/2^20+3_xmm_faster.png)
+
+#### $2^{26}$ instance where XMM is faster 
+![XMM_Faster_2^26](screenshots/2^26_xmm_faster.png)
+
+### 4.3 Problems Encountered and Solutions
 
 1. $2^{30}$ restriction
 >When running the program, we encountered issues when the vector size is 2^30. We just had to reduce it to 2^28 since ayun lang yung size na successfully nagrun yung code. It was due to the memory capability of our respective machines 
@@ -116,14 +126,21 @@ However, the actual speedup still depends on factors such as memory bandwidth, C
 >QPC uses a high-resolution performance counter which lets you measure small time differemce more precisely, which is important when comparing implementations on SIMD-optimized versions. (sapat na ba toh as explanation)
 
 
-### 4.5 Unique Methodology Used
+### 4.4 Unique Methodology Used
 // kurt shall do this
 
-### 4.6 AHA Moments and Key Learnings
+### 4.5 AHA Moments and Key Learnings
 // float zero_dd incident
+
+Data types matter when getting assigned to the registers, specifically for float or integer. We had this incident of declaring zero_dd and one_dd into float types initially and in the output, it appears that the XMM and YMM register outputs are not the same. This is because the float types get read differently in hex value than as an integer, which triggers the “not same” flag for it. WIth this, we made sure that both are in integer format so it can show that the SIMD results are the same as standard C baseline. 
+
 
 // kurt's baliktad idea (starting from 28)
 
+
 // ymm doesn't guarantee to be the fastest
+
+Given the multiple run results, it shows that wider SIMD instructions do not automatically mean better performance. It still depends on the CPU microarchitecture, instruction type, workload, and surrounding code.
+
 
 
