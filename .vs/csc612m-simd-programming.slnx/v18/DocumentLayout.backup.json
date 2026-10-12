@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\avxFuncMaxSPArray.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|solutionrelative:csc612m-simd-programming\\avxFuncMaxSPArray.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\asmFuncMaxSPArray.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|solutionrelative:csc612m-simd-programming\\asmFuncMaxSPArray.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|solutionrelative:csc612m-simd-programming\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\avx2FuncMaxSPArray.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|solutionrelative:csc612m-simd-programming\\avx2FuncMaxSPArray.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\max_sp_array.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|solutionrelative:csc612m-simd-programming\\max_sp_array.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{D6590BDA-1555-4489-93FD-6CA6109B69CF}|csc612m-simd-programming\\csc612m-simd-programming.vcxproj|solutionrelative:csc612m-simd-programming\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "max_sp_array.c",
+              "DocumentMoniker": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\max_sp_array.c",
+              "RelativeDocumentMoniker": "csc612m-simd-programming\\max_sp_array.c",
+              "ToolTip": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\max_sp_array.c",
+              "RelativeToolTip": "csc612m-simd-programming\\max_sp_array.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-10-12T08:59:26.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "avxFuncMaxSPArray.asm",
+              "DocumentMoniker": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\avxFuncMaxSPArray.asm",
+              "RelativeDocumentMoniker": "csc612m-simd-programming\\avxFuncMaxSPArray.asm",
+              "ToolTip": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\avxFuncMaxSPArray.asm",
+              "RelativeToolTip": "csc612m-simd-programming\\avxFuncMaxSPArray.asm",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-10-12T08:59:04.733Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "avx2FuncMaxSPArray.asm",
+              "DocumentMoniker": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\avx2FuncMaxSPArray.asm",
+              "RelativeDocumentMoniker": "csc612m-simd-programming\\avx2FuncMaxSPArray.asm",
+              "ToolTip": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\avx2FuncMaxSPArray.asm",
+              "RelativeToolTip": "csc612m-simd-programming\\avx2FuncMaxSPArray.asm",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAEYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-10-12T08:58:19.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "asmFuncMaxSPArray.asm",
+              "DocumentMoniker": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\asmFuncMaxSPArray.asm",
+              "RelativeDocumentMoniker": "csc612m-simd-programming\\asmFuncMaxSPArray.asm",
+              "ToolTip": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\asmFuncMaxSPArray.asm",
+              "RelativeToolTip": "csc612m-simd-programming\\asmFuncMaxSPArray.asm",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-10-12T08:57:54.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\README.md",
+              "RelativeDocumentMoniker": "csc612m-simd-programming\\README.md",
+              "ToolTip": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\README.md",
+              "RelativeToolTip": "csc612m-simd-programming\\README.md",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-10-12T08:52:25.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "main.c",
+              "DocumentMoniker": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\main.c",
+              "RelativeDocumentMoniker": "csc612m-simd-programming\\main.c",
+              "ToolTip": "C:\\Users\\marxa\\OneDrive\\Documents\\GitHub\\csc612m-simd-programming\\csc612m-simd-programming\\csc612m-simd-programming\\main.c",
+              "RelativeToolTip": "csc612m-simd-programming\\main.c",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-10-12T08:51:30.943Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

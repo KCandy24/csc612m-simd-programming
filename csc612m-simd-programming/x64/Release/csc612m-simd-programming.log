@@ -1,0 +1,8 @@
+﻿  Performing Custom Build Tools
+  Performing Custom Build Tools
+  Performing Custom Build Tools
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 9 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  csc612m-simd-programming.vcxproj -> C:\Users\marxa\OneDrive\Documents\GitHub\csc612m-simd-programming\csc612m-simd-programming\x64\Release\csc612m-simd-programming.exe

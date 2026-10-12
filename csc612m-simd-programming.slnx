@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="csc612m-simd-programming/csc612m-simd-programming.vcxproj" />
+</Solution>
