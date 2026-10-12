@@ -11,23 +11,9 @@
 
 ## 1. Program Output and Execution Time
 
-### Program Output (Release)
-
-#### $2^{20}+0$ Print Output
-![2^20+0](/screenshots/2^20+0_release_output.png)
-
-#### $2^{20}+3$ Print Output
-![2^20+3](/screenshots/2^20+3_release_output.png)
-
-#### $2^{26}+0$ Print Output
-![2^26](/screenshots/2^26_release_output.png)
-
-#### $2^{28}+0$ Print Output
-![2^28](/screenshots/2^28_release_output.png)
-
 ### Program Output (Debug)
 
-#### $2^{20}+0$ Print Output
+#### $2^{20}+0$ Print Output (Debug)
 ![2^20+0](/screenshots/2^20+0_debug_output.png)
 
 #### $2^{20}+3$ Print Output
@@ -39,32 +25,83 @@
 #### $2^{28}+0$ Print Output
 ![2^28](/screenshots/2^28_debug_output.png)
 
-### Comparative Execution Time (in ms)
-** This is without offset **
+### Program Output (Release)
 
-| Kernel | $2^{20}$ | $2^{26}$ | $2^{28}$ |
-|:---|---:|---:|---:|
-| C Version | 20.7768 | 1083.9886 | 6154.6507 |
-| x86-64 Assembly | 12.9786 | 692.0763 | 3561.2578 |
-| AVX (XMM) | 1.6531 | 115.0236 | 481.0688 |
-| AVX2 (YMM) | 1.2157 | 111.3414 | 358.1627 |
+#### $2^{20}+0$ Print Output (Release)
+![2^20+0](/screenshots/2^20+0_release_output.png)
+
+#### $2^{20}+3$ Print Output (Release)
+![2^20+3](/screenshots/2^20+3_release_output.png)
+
+#### $2^{26}+0$ Print Output (Release)
+![2^26](/screenshots/2^26_release_output.png)
+
+#### $2^{28}+0$ Print Output (Release)
+![2^28](/screenshots/2^28_release_output.png)
+
+
+### Comparative Execution Time (in ms)
+
+*Note: This is without offset*
+
+| Kernel | $2^{20}$ debug | $2^{20}$ release | $2^{26}$ debug | $2^{26}$ release | $2^{28}$ debug | $2^{28}$ release |
+| --- | --- | --- | --- | --- | --- | --- |
+| **C** | 12.1335 | 1.5148 | 781.0648 | 85.7272 | 4432.4441 | 389.7474 |
+| **x86-64** | 6.2339 | 6.3444 | 427.1414 | 408.2685 | 1841.2770 | 1671.7546 |
+| **XMM** | 0.7305 | 1.0435 | 58.5030 | 59.1313 | 230.3797 | 225.4137 |
+| **YMM** | 0.8657 | 0.7269 | 62.5469 | 54.0027 | 245.7155 | 220.0916 |
 
 ### Performance Speedup Analysis
 
+| Kernel | $2^{20}$ debug | $2^{20}$ release | $2^{26}$ debug | $2^{26}$ release | $2^{28}$ debug | $2^{28}$ release |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **C** | 1.00x | 1.00x | 1.00x | 1.00x | 1.00x | 1.00x |
+| **x86-64** | 1.95x | 0.24x | 1.83x | 0.21x | 2.41x | 0.23x |
+| **XMM** | 16.61x | 1.45x | 13.35x | 1.45x | 19.24x | 1.73x |
+| **YMM** | 14.02x | 2.08x | 12.49x | 1.59x | 18.04x | 1.77x |
+
+#### Debug Build Speedups
+
 **a. x86-64 Assembly:** How many times faster is it than C?
-- $2^{20}: 1.600 \times$
-- $2^{26}: 1.566 \times$
-- $2^{28}: 1.728 \times$
+
+* $2^{20}$: 1.946 $\times$
+* $2^{26}$: 16.609 $\times$
+* $2^{28}$: 2.407 $\times$
 
 **b. AVX (XMM):** How many times faster is it than C?
-- $2^{20}: 12.568 \times$
-- $2^{26}: 9.424 \times$
-- $2^{28}: 12.794 \times$
+
+* $2^{20}$: 16.610 $\times$
+* $2^{26}$: 13.351 $\times$
+* $2^{28}$: 19.240 $\times$
 
 **c. AVX2 (YMM):** How many times faster is it than C?
-- $2^{20}: 17.090 \times$
-- $2^{26}: 9.736 \times$
-- $2^{28}: 17.184 \times$
+
+* $2^{20}$: 14.016 $\times$
+* $2^{26}$: 12.488 $\times$
+* $2^{28}$: 18.039 $\times$
+
+---
+
+#### Release Build Speedups
+
+**a. x86-64 Assembly:** How many times faster is it than C?
+
+* $2^{20}$: 0.239 $\times$ *(slower than C)*
+* $2^{26}$: 0.210 $\times$ *(slower than C)*
+* $2^{28}$: 0.233 $\times$ *(slower than C)*
+
+**b. AVX (XMM):** How many times faster is it than C?
+
+* $2^{20}$: 1.452 $\times$
+* $2^{26}$: 1.450 $\times$
+* $2^{28}$: 1.729 $\times$
+
+**c. AVX2 (YMM):** How many times faster is it than C?
+
+* $2^{20}$: 2.084 $\times$
+* $2^{26}$: 1.587 $\times$
+* $2^{28}$: 1.771 $\times$
+
 
 **Why are the optimized implementations faster?**
 
@@ -151,17 +188,17 @@ Our implementation of boundary handling involves taking the remainder and storin
 
 ### 4.1 Which Implementation Is the Fastest?
 
-The fastest implementation is with the AVX2 setup, as it was 17.09x, 9.74x, and 17.18x faster than the standard C (scalar) baseline in $2^{20}$, $2^{26}$, and $2^{28}$.
+The fastest implementation is with the AVX and AVX2 setup, as it was up to 19x and 18x faster than the standard C (scalar) baseline in debug respectively while being at most 1.7x and 2x faster in release versions.
 
 The possible reasons why it is the fastest among the kernels is because of its capability of holding and manipulating larger amounts of data two times better than XMM due to its capacity of 256 bits. It also leverages on the SIMD architecture to perform the operation in a quicker pace than C which performs the calculations “one by one” in a sequential phase, and not parallel.
 
 ### 4.2 Why Is the Speedup Different from Theoretical Expectations?
 
-Based on the results of the runs we have, the results did not show the theoretical effect that YMM should be twice as faster to XMM given that YMM was only ~1.42 times faster than XMM for $2^{20}$ and $2^{28}$, but was almost the same time for the $2^{26}$ one at nine times faster. We also tried doing multiple runs to check this effect and it held true for most of the runs. 
+Based on the results of the runs we have, the results did not show the theoretical effect that YMM should be twice as faster to XMM given that YMM was slower than XMM for debug versions of all array sizes, but was almost the same time or faster in release versions. We also tried doing multiple runs to check this effect and it held true for most of the runs. 
 
-One of the possible reasons is memory bandwidth limitations. In cases such as $2^{26}$ and $2^{28}$, vector sizes are too large that the system could not supply data fast enough to keep the 256-bit vector execution going. With this, performance becomes memory-bound than compute-bound.
+In the release version of ${2^{20}}$, AVX2 outperforms all kernels, and this can be attributed due to this array size fitting comfortably in 4 MB, however, moving to $2^{26}$ and $2^{28}$, the memory drastically increases reaching over a gigabyte. The system could not supply data fast enough to keep the 256-bit vector execution going. With this, performance becomes memory-bound than compute-bound.
 
-Moreover, we also noticed that during the multiple runs, there were instances that XMM was a little faster than YMM from merely milliseconds to a few seconds apart (see figures below). This discrepancy can be due to runtime environmental factors such as OS context switching, thread preemption, or differing hardware specifications.
+Moreover, we also noticed that during the multiple runs, there were instances that XMM was a little faster than YMM from merely milliseconds to a few seconds apart (see figures below). This discrepancy can be due to runtime environmental factors such as OS context switching, thread preemption, or differing hardware specifications. 
 
 
 #### $2^{20}+3$ instance where XMM is faster 
@@ -189,7 +226,9 @@ Moreover, we also noticed that during the multiple runs, there were instances th
 
 ### 4.5 AHA Moments and Key Learnings
 
-A minor mistake that flew under the radar was the initialization of `zero_dd` to a float which caused the index array to show values that are incorrect due to the wrong initialization of the array 
+One consistent pattern seen in the speedup data is that raw assembly underperforms C when it comes to release versions, this may be because of the compile optimization done in VS to make C much more efficient in release compared to when it is run in debug where it is optimized for development
+
+A minor mistake that flew under the radar was the initialization of `zero_dd` to a float which caused the index array to show values that are incorrect due to the wrong initialization of the array.
 
 Data types matter when getting assigned to the registers, specifically for float or integer. We had this incident of declaring zero_dd and one_dd into float types initially and in the output, it appears that the XMM and YMM register outputs are not the same. This is because the float types get read differently in hex value than as an integer, which triggers the “not same” flag for it. WIth this, we made sure that both are in integer format so it can show that the SIMD results are the same as standard C baseline. 
 
