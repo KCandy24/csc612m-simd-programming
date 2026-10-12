@@ -11,20 +11,33 @@
 
 ## 1. Program Output and Execution Time
 
-### Program Output
+### Program Output (Release)
 
 #### $2^{20}+0$ Print Output
-![2^20+0](/screenshots/2^20+0_output.png)
+![2^20+0](/screenshots/2^20+0_release_output.png)
 
 #### $2^{20}+3$ Print Output
-![2^20+3](/screenshots/2^20+3_output.png)
+![2^20+3](/screenshots/2^20+3_release_output.png)
 
 #### $2^{26}+0$ Print Output
-![2^26](/screenshots/2^26_output.png)
+![2^26](/screenshots/2^26_release_output.png)
 
 #### $2^{28}+0$ Print Output
-![2^28](/screenshots/2^28_output.png)
+![2^28](/screenshots/2^28_release_output.png)
 
+### Program Output (Debug)
+
+#### $2^{20}+0$ Print Output
+![2^20+0](/screenshots/2^20+0_debug_output.png)
+
+#### $2^{20}+3$ Print Output
+![2^20+3](/screenshots/2^20+3_debug_output.png)
+
+#### $2^{26}+0$ Print Output
+![2^26](/screenshots/2^26_debug_output.png)
+
+#### $2^{28}+0$ Print Output
+![2^28](/screenshots/2^28_debug_output.png)
 
 ### Comparative Execution Time (in ms)
 ** This is without offset **
