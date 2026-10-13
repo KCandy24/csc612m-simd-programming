@@ -137,11 +137,9 @@ However, the actual speedup still depends on factors such as memory bandwidth, C
 
 ![AVX2 YMM Correctness Check](screenshots/Boundary%20Check.png)
 
-
+#### Code snippets for the boundary checking:
 
 ```
-
-
     mov     r10, [rsp+40]               ; idx
     xor     r11, r11                    ; r11 = byte offset 
     mov     eax, ecx                    ; eax = n
@@ -177,7 +175,6 @@ However, the actual speedup still depends on factors such as memory bandwidth, C
 
     done:
         ret
-        
 ```
 
 Our implementation of boundary handling involves taking the remainder and storing it. A special case is done if the original number is less than the number of single precision in the register, the porgram automatically jumps to the tail subsection. The tail subsection iterates over the remainder to operate the rest of the array to obtain the max element and the index.
@@ -210,10 +207,10 @@ Moreover, we also noticed that during the multiple runs, there were instances th
 ### 4.3 Problems Encountered and Solutions
 
 1. $2^{30}$ restriction
->When running the program, we encountered issues when the vector size is 2^30. We just had to reduce it to 2^28 since ayun lang yung size na successfully nagrun yung code. It was due to the memory capability of our respective machines 
+>When running the program, we encountered issues when the vector size is $2^{30}$. We had to reduce it to $2^{28}$ because that is the vector size where it successfully ran in our devices. The probable cause was due to the memory capability of our respective machines. 
 
 2. QueryPerformanceCounter instead of clock() 
->QPC uses a high-resolution performance counter which lets you measure small time differemce more precisely, which is important when comparing implementations on SIMD-optimized versions where differences may be miniscule.
+>From a previous feedback, we decided to replace clock() function with QuearyPerformanceCounter (QPC) instead. QPC uses a high-resolution performance counter which lets you measure small time differemce more precisely, which is important when comparing implementations on SIMD-optimized versions where differences may be miniscule.
 
 
 ### 4.4 Unique Methodology Used
@@ -226,16 +223,12 @@ Moreover, we also noticed that during the multiple runs, there were instances th
 
 ### 4.5 AHA Moments and Key Learnings
 
-One consistent pattern seen in the speedup data is that raw assembly underperforms C when it comes to release versions, this may be because of the compile optimization done in VS to make C much more efficient in release compared to when it is run in debug where it is optimized for development
+1. One consistent pattern seen in the speedup data is that raw assembly underperforms C when it comes to release versions, this may be because of the compile optimization done in VS to make C much more efficient in release compared to when it is run in debug where it is optimized for development.
 
-A minor mistake that flew under the radar was the initialization of `zero_dd` to a float which caused the index array to show values that are incorrect due to the wrong initialization of the array.
+2. Moreover, a minor mistake that flew under the radar was the initialization of `zero_dd` and `one_dd`to a float which caused the index array to show values that are incorrect due to the wrong initialization of the array. Data types matter in this regard when getting assigned to the registers, especially for float or integer. This is because the float types get read differently in hex value than as an integer, which triggers the “not same” flag. 
 
-Data types matter when getting assigned to the registers, specifically for float or integer. We had this incident of declaring zero_dd and one_dd into float types initially and in the output, it appears that the XMM and YMM register outputs are not the same. This is because the float types get read differently in hex value than as an integer, which triggers the “not same” flag for it. WIth this, we made sure that both are in integer format so it can show that the SIMD results are the same as standard C baseline. 
+3. Initially, the program re-initializes all arrays upon switching to a different array size. The issue becomes the extensive re-use of memory, which is why, midway implementation, we decided to forego allocation and initialization for each array size and allocate to the largest array size before initializing the values for array 0 and array 1.  
 
-Initially, the program re-initializes all arrays upon switching to a different array size, the issue becomes the extensive re-use of memory which is why midway implementation, we decided to forego allocation and initialization for each array size and allocate to the largest array size before initializing the values for array 0 and array 1.  
-
-In theory, YMM SIMD implementation should be the fastest, however in practicality, it shows little improvement and sometimes even underperform XMM SIMD, this made us learn that YMM although may be handling multiple data, will not automatically outperform XMM.
-
-Given the multiple run results, it shows that wider SIMD instructions do not automatically mean better performance. It still depends on the CPU microarchitecture, instruction type, workload, and surrounding code.
+4. In theory, YMM SIMD implementation should be the fastest, however in practicality, it shows little improvement and sometimes even underperform XMM SIMD. This made us realize that YMM, although may be handling multiple data, will not automatically outperform XMM, and does not automatically mean better performance. It still depends on the CPU microarchitecture, instruction type, workload, and surrounding code.
 
 
